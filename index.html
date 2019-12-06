@@ -102,19 +102,16 @@
               <span class="carousel-control-prev-icon"></span>
               <span class="sr-only">Previous</span>
             </a>
-            <!----- Carousel Play Buttons  ------>
-            <a class="carousel-control-next" href="#homeCarousel" role="button" data-slide="prev">
+            <a class="carousel-control-next" href="#homeCarousel" role="button" data-slide="next">
               <span class="carousel-control-next-icon"></span>
               <span class="sr-only">Next</span>
             </a>
-            <div class="btn-group" id="carouselButton">
-              <button class="btn btn-danger btn-sm" id="carouselPause">
-                <i class="fa fa-pause"></i>
-              </button>
-              <button class="btn btn-danger btn-sm" id="carouselPlay">
-                <i class="fa fa-play"></i>
-              </button>
-            </div>
+            <!----- Carousel Play Buttons  ------>
+
+            <button class="btn btn-danger btn-sm" id="carouselButton">
+              <i class="fa fa-pause"></i>
+            </button>
+
           </div>
         </div>
       </div>
@@ -198,13 +195,18 @@
 <script>
   $(function() {
     $(".carousel").carousel( { interval: 2000} );
-    $("#carouselPause").click(function(){
-      $(".carousel").carousel("pause");
+    $("#carouselButton").click(function(){
+      if ($("#carouselButton").children("i").hasClass("fa-pause")) {
+          $(".carousel").carousel("pause");
+          $("#carouselButton").children("i").removeClass("fa-pause");
+          $("#carouselButton").children("i").addClass("fa-play");
+      } else {
+          $(".carousel").carousel("cycle");
+          $("#carouselButton").children("i").removeClass("fa-play");
+          $("#carouselButton").children("i").addClass("fa-pause");
+      }
     });
-    $("#carouselPlay ").click(function(){
-      $(".carousel").carousel("cycle");
-    });
-  })
+  });
 </script>
 
 </body>
@@ -279,10 +281,10 @@
                <label class="col-6">Campsite Type</label>
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn bg-success btn-secondary active">
-                  <input id="campsiteType" type="radio" name="campsiteType" value="tent" class="form-control col-1">Tent
+                  <input type="radio" name="campsiteType" value="tent" class="form-control col-1">Tent
                 </label>
                 <label class="btn bg-primary btn-secondary">
-                  <input id="campsiteType" type="radio"  name="campsiteType" value="RV" class="form-control col-1">RV
+                  <input type="radio"  name="campsiteType" value="RV" class="form-control col-1">RV
                 </label>
               </div>
             </div>
